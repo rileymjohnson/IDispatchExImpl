@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>Dynamic Object Tests</TITLE>
+</HEAD>
+
+<SCRIPT>
+
+	var objTest = new ActiveXObject("TestDispatchEx.TestDispatchEx");
+	var objDynamicOnly = new ActiveXObject("TestDispatchEx.DynamicOnly");
+
+	// Test the processing of properties by name
+	objTest.Set("Number") = 5;
+	alert(objTest.Get("number"));
+
+	// Add a new property to it
+	objTest.Foo = "Foo";
+	alert(objTest.Foo);
+	// Set and call the function pointer
+	// Change this value to one of the three methods below to see the effect
+	objTest.FuncPtr = TestFunc2;
+	objTest.FuncPtr("This is a cool function pointer of ");
+	alert(objTest.AnotherProp);
+	// Check to see if the prop is set
+	alert(objDynamicOnly.DynamicProp);
+
+	// Call the ITestDispatchEx members
+	alert(objTest.Number);
+	objTest.Square();
+	alert(objTest.Number);
+	objTest.Number = 4;
+	objTest.Square();
+	alert(objTest.Number);
+
+	function TestFunc2(strTest)
+	{
+		objTest.AnotherProp = strTest + "TestFunc2";
+		objDynamicOnly.DynamicProp = "A purely dynamic property";
+	}
+
+	function TestFunc3(strTest)
+	{
+		objTest.AnotherProp = strTest + "TestFunc3";
+	}
+
+	function TestFunc(strTest)
+	{
+		objTest.AnotherProp = strTest + "TestFunc";
+	}
+
+</SCRIPT>
+
+<BODY>
+
+Everything is in the script stuff
+
+</BODY>
+</HTML>

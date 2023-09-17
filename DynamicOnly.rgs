@@ -1,0 +1,23 @@
+HKCR
+{
+	TestDispatchEx.DynamicOnly.1 = s 'DynamicOnly Class'
+	{
+		CLSID = s '{F2DE7664-D827-11D2-809B-00500464D4A2}'
+	}
+	TestDispatchEx.DynamicOnly = s 'DynamicOnly Class'
+	{
+		CLSID = s '{F2DE7664-D827-11D2-809B-00500464D4A2}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F2DE7664-D827-11D2-809B-00500464D4A2} = s 'DynamicOnly Class'
+		{
+			ProgID = s 'TestDispatchEx.DynamicOnly.1'
+			VersionIndependentProgID = s 'TestDispatchEx.DynamicOnly'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

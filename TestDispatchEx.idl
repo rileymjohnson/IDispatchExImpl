@@ -1,0 +1,70 @@
+// TestDispatchEx.idl : IDL source for TestDispatchEx.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (TestDispatchEx.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+import "dispex.idl";
+	
+	[
+		object,
+		uuid(7F6A9B42-C027-11D2-AF24-006008B1252F),
+		helpstring("ITestDispatchEx Interface"),
+		pointer_default(unique)
+	]
+	interface ITestDispatchEx : IDispatchEx
+	{
+		[id(1), helpstring("method Square")]
+		HRESULT Square(void);
+		[propget, id(2), helpstring("property Number")]
+		HRESULT Number([out, retval] VARIANT *pVal);
+		[propput, id(2), helpstring("property Number")]
+		HRESULT Number([in] VARIANT newVal);
+		[id(3), helpstring("method Get")] HRESULT Get([in] BSTR bstrVarName,[out,retval]VARIANT* pvtVar);
+		[propput, id(4), helpstring("method Set")] HRESULT Set([in] BSTR bstrVarName,[in] VARIANT vtVar);
+	};
+	
+	[
+		object,
+		uuid(F2DE7663-D827-11D2-809B-00500464D4A2),
+		dual,
+		helpstring("IDynamicOnly Interface"),
+		pointer_default(unique)
+	]
+	interface IDynamicOnly : IDispatchEx
+	{
+		// This interface is a pure example of IDispatchEx with no custom methods
+	};
+
+[
+	uuid(7F6A9B36-C027-11D2-AF24-006008B1252F),
+	version(1.0),
+	helpstring("TestDispatchEx 1.0 Type Library")
+]
+library TESTDISPATCHEXLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	
+	[
+		uuid(7F6A9B43-C027-11D2-AF24-006008B1252F),
+		helpstring("TestDispatchEx Class")
+	]
+	coclass TestDispatchEx
+	{
+		[default] interface ITestDispatchEx;
+	};
+	
+	[
+		uuid(F2DE7664-D827-11D2-809B-00500464D4A2),
+		helpstring("DynamicOnly Class")
+	]
+	coclass DynamicOnly
+	{
+		[default] interface IDynamicOnly;
+	};
+};

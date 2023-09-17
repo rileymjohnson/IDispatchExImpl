@@ -1,0 +1,23 @@
+HKCR
+{
+	TestDispatchEx.TestDispatchEx.1 = s 'TestDispatchEx Class'
+	{
+		CLSID = s '{7F6A9B43-C027-11D2-AF24-006008B1252F}'
+	}
+	TestDispatchEx.TestDispatchEx = s 'TestDispatchEx Class'
+	{
+		CLSID = s '{7F6A9B43-C027-11D2-AF24-006008B1252F}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {7F6A9B43-C027-11D2-AF24-006008B1252F} = s 'TestDispatchEx Class'
+		{
+			ProgID = s 'TestDispatchEx.TestDispatchEx.1'
+			VersionIndependentProgID = s 'TestDispatchEx.TestDispatchEx'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

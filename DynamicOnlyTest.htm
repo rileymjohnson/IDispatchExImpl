@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>DynamicOnly Test</TITLE>
+</HEAD>
+
+<SCRIPT>
+
+	var objDynamicOnly = new ActiveXObject("TestDispatchEx.DynamicOnly");
+	// Add a dynamic property named LastName
+	objDynamicOnly.LastName = "Doe";
+	// Add a lower case property
+	objDynamicOnly.firstname = "John";
+	// Add a dynamic method
+	objDynamicOnly.Show = Display;
+	// Call the object's method now
+	objDynamicOnly.Show();
+
+	function Display()
+	{
+		alert(objDynamicOnly.LastName + ", " + objDynamicOnly.firstname);
+		// This should display "Doe, undefined"
+		alert(objDynamicOnly.LastName + ", " + objDynamicOnly.FirstName);
+	}
+
+</SCRIPT>
+
+<BODY>
+
+Everything is in the script code
+
+</BODY>
+</HTML>
